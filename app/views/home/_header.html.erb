@@ -1,0 +1,16 @@
+<nav>
+  <%= link_to 'Home', root_path%>
+  |
+  <%= link_to "About Us", about_path%>
+  <% unless user_signed_in? %>
+    |
+    <%= link_to "Sign Up", new_user_registration_path%>
+    |
+    <%= link_to "Sign In", new_user_session_path%>
+  <% else %>
+    |
+    <%= button_to "Sign Out", destroy_user_session_path, method: :delete%>
+    |
+    <%= link_to "Edit Profile", edit_user_registration_path%>
+  <% end %>
+</nav>
