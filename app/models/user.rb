@@ -1,4 +1,11 @@
 class User < ApplicationRecord
+  has_many :posts, foreign_key: 'user_id'
+  has_many :comments, foreign_key: 'user_id'
+  has_many :post_likes, foreign_key: 'user_id'
+  has_many :comment_likes, foreign_key: 'user_id'
+  has_many :comment_replies, foreign_key: 'user_id'
+  has_many :reply_likes, foreign_key: 'user_id'
+
   validates :name, presence: true
   validates :username, presence: true,
                        format: { with: /\A[a-zA-Z][a-zA-Z0-9]*\z/, message: 'can only contain letters and numbers' },
