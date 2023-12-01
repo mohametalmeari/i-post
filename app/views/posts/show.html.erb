@@ -7,4 +7,17 @@
     <%= f.hidden_field :post_id, value: @post.id %>
     <%= f.submit @like_text %>
   <% end %>
+  <%= form_with model: @comment, url: comment_path  do |f| %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <%= f.label :content %>: 
+    <%= f.text_area :content %> <br>
+    <%= f.submit "Comment" %>
+  <% end %>
+  <% @comments.each do |comment|%>
+    <div class="comment-card">
+      <%= comment.user.username%>: 
+      <%= comment.content %> <br>
+      <br>
+    </div>
+  <% end %>
 </div>

@@ -22,9 +22,10 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @like_text = 'Like'
-
     @like_text = 'Unlike' if PostLike.find_by(post: @post, user: current_user)
     @post_like = PostLike.new
+    @comments = Comment.where(post: @post)
+    @comment = Comment.new
   end
 
   def like
@@ -44,6 +45,17 @@ class PostsController < ApplicationController
     redirect_to request.referrer
   end
 
+  def comment
+    comment = Comment.new(comment_params)
+    comment.user = current_user
+    flash[:notice] = if comment.save
+                       'You commented on the post'
+                     else
+                       comment.errors.full_messages.join(', ')
+                     end
+    redirect_to request.referrer
+  end
+
   private
 
   def post_params
@@ -51,6 +63,10 @@ class PostsController < ApplicationController
   end
 
   def like_param
-    params.require(:post_like).permit(:post_id, :like_id)
+    params.require(:post_like).permit(:post_id)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:post_id, :content)
   end
 end
