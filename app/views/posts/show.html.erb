@@ -3,4 +3,8 @@
   <%= @post.title %> <br>
   <%= @post.content %> <br>
   <%= @post.public %>
+  <%= form_with model: @post_like, url: like_path do |f| %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <%= f.submit @like_text %>
+  <% end %>
 </div>
