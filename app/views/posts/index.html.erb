@@ -1,2 +1,9 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>Posts List</h1>
+<% @posts.each do |post|%>
+  <div class="post-card">
+    <%= post.title %> <br>
+    <%= post.content %> <br>
+    <%= post.public %> <br>
+ <br>
+  </div>
+<% end %>

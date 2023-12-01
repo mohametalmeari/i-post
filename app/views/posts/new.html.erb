@@ -1,2 +1,10 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h2>New post is being created by <i> <%= current_user.name %> </i> </h2>
+<%= form_with model: @post, url: posts_path  do |f| %>
+  <%= f.label :title %>: 
+  <%= f.text_field :title %> <br>
+  <%= f.label :content %>: 
+  <%= f.text_area :content %> <br>
+  <%= f.label :public %>: 
+  <%= f.check_box :public %> <br>
+  <%= f.submit "Create Post" %>
+<% end %>
