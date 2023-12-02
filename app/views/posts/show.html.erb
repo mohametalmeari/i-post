@@ -17,6 +17,14 @@
     <div class="comment-card">
       <%= comment.user.username%>: 
       <%= comment.content %> <br>
+      <%= form_with model: @comment_like, url: comment_like_path do |f| %>
+        <%= f.hidden_field :comment_id, value: comment.id %>
+        <% if CommentLike.find_by(comment: comment, user: current_user) %>
+          <%= f.submit 'Unike comment' %>
+        <% else %>
+          <%= f.submit 'Like comment' %>
+        <% end %>
+      <% end %>
       <br>
     </div>
   <% end %>
