@@ -47,13 +47,7 @@ class PostsController < ApplicationController
   end
 
   def like_comment
-    puts 'zzzzzzzzzzzzzzzzzzz'
-    puts comment_like_param[:comment_id]
-    puts 'zzzzzzzzzzzzzzzzzzz'
     like = CommentLike.find_by(comment: comment_like_param[:comment_id], user: current_user)
-    puts 'zzzzzzzzz'
-    p like.inspect
-    puts 'zzzzzzzzzzz'
     if like
       like.destroy
       flash[:notice] = 'You unliked the comment'

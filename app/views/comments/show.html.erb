@@ -1,0 +1,13 @@
+<h1>Comment Details</h1>
+<div class="comment-card">
+  <%= @comment.content %> <br>
+  <%= form_with model: @comment_like, url: comment_like_path, method: :post do |f| %>
+    <%= f.hidden_field :comment_id, value: @comment.id %>
+    <% if CommentLike.find_by(comment: @comment, user: current_user) %>
+      <%= f.submit 'Unike comment' %>
+    <% else %>
+      <%= f.submit 'Like comment' %>
+    <% end %>
+  <% end %>
+  
+</div>
