@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'reply_like', to: 'comments#like_reply', as: 'reply_like'
   post 'comment', to: 'posts#comment', as: 'comment'
   post 'reply', to: 'comments#reply', as: 'comment_reply'
+  delete 'destroy_reply/:id', to: 'comments#destroy_reply', as: 'destroy_reply'
   devise_for :users
   root "home#index"
   get 'about', to: 'home#about'

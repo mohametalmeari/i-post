@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def show
+    @post = Post.find(params[:post_id])
     @comment = Comment.find_by(post_id: params[:post_id], id: params[:id])
     @comment_like = CommentLike.new
     @comment_reply = CommentReply.new
@@ -32,6 +33,18 @@ class CommentsController < ApplicationController
                        end
     end
     redirect_to request.referrer
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to post_path(params[:post_id]), notice: 'Comment deleted.'
+  end
+
+  def destroy_reply
+    comment_reply = CommentReply.find(params[:id])
+    comment_reply.destroy
+    redirect_to request.referrer, notice: 'Reply deleted.'
   end
 
   private
