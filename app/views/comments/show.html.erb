@@ -1,0 +1,35 @@
+<h1>Comment Details</h1>
+<div class="comment-card">
+  <%= @comment.content %> <br>
+  <%= form_with model: @comment_like, url: comment_like_path, method: :post do |f| %>
+    <%= f.hidden_field :comment_id, value: @comment.id %>
+    <% if CommentLike.find_by(comment: @comment, user: current_user) %>
+      <%= f.submit 'Unike comment' %>
+    <% else %>
+      <%= f.submit 'Like comment' %>
+    <% end %>
+  <% end %>
+    <%= form_with model: @comment_reply, url: comment_reply_path  do |f| %>
+    <%= f.hidden_field :comment_id, value: @comment.id %>
+    <%= f.label :content %>: 
+    <%= f.text_area :content %> <br>
+    <%= f.submit "Reply" %>
+  <% end %>
+
+    <% @comment_replies.each do |comment_reply|%>
+    <div class="reply-card">
+      <%= comment_reply.user.username%>: 
+      <%= comment_reply.content %> <br>
+      <%= form_with model: ReplyLike, url: reply_like_path do |f| %>
+        <%= f.hidden_field :comment_reply_id, value: comment_reply.id %>
+        <% if ReplyLike.find_by(comment_reply: comment_reply, user: current_user) %>
+          <%= f.submit 'Unike reply' %>
+        <% else %>
+          <%= f.submit 'Like reply' %>
+        <% end %>
+      <% end %>
+      <br>
+    </div>
+  <% end %>
+  
+</div>
