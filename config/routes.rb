@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments 
   end
-  post 'like', to: 'posts#like', as: 'like'
+  post 'like/:id', to: 'posts#like', as: 'like'
+  delete 'unlike/:id', to: 'posts#unlike', as: 'unlike'
+
   post 'like_comment/:id', to: 'posts#like_comment', as: 'like_comment'
   delete 'like_comment/:id', to: 'posts#unlike_comment', as: 'unlike_comment'
   

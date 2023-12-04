@@ -3,12 +3,11 @@
 <div class="comment-card">
   <%= @comment.content %> <br>
   <%= button_to "Delete", post_comment_path(@post, @comment), method: :delete %>
-      <% if CommentLike.find_by(comment: @comment, user: current_user) %>
-        <%= button_to "Unlike", unlike_comment_path(@comment.id), method: :delete %>
-      <% else %>
-        <%= button_to "Like", like_comment_path(@comment.id), method: :post %>
-      <% end %>
-
+  <% if CommentLike.find_by(comment: @comment, user: current_user) %>
+    <%= button_to "Unlike", unlike_comment_path(@comment.id), method: :delete %>
+  <% else %>
+    <%= button_to "Like", like_comment_path(@comment.id), method: :post %>
+  <% end %>
   <%= form_with model: @comment_reply, url: comment_reply_path  do |f| %>
     <%= f.hidden_field :comment_id, value: @comment.id %>
     <%= f.label :content %>: 

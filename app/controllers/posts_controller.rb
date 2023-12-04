@@ -19,6 +19,13 @@ class PostsController < ApplicationController
     end
   end
 
+  
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to posts_path, notice: 'Post deleted.'
+  end
+
   def show
     @post = Post.find(params[:id])
     @like_text = 'Like'
@@ -30,19 +37,26 @@ class PostsController < ApplicationController
   end
 
   def like
-    like = PostLike.find_by(post: like_param[:post_id], user: current_user)
-    if like
-      like.destroy
-      flash[:notice] = 'You unliked the post'
-    else
-      post_like = PostLike.new(like_param)
-      post_like.user = current_user
-      flash[:notice] = if post_like.save
-                         'You liked the post'
-                       else
-                         post_like.errors.full_messages.join(', ')
-                       end
-    end
+    post = Post.find(params[:id])
+    like = PostLike.new(post: post, user: current_user)
+    like.save
+    redirect_to request.referrer
+  end
+
+  def unlike
+    like = PostLike.find_by(post: params[:id], user: current_user)
+    like.destroy
+    redirect_to request.referrer
+  end
+
+  def comment
+    comment = Comment.new(comment_params)
+    comment.user = current_user
+    flash[:notice] = if comment.save
+                       'You commented on the post'
+                     else
+                       comment.errors.full_messages.join(', ')
+                     end
     redirect_to request.referrer
   end
 
@@ -59,31 +73,10 @@ class PostsController < ApplicationController
     redirect_to request.referrer
   end
 
-  def comment
-    comment = Comment.new(comment_params)
-    comment.user = current_user
-    flash[:notice] = if comment.save
-                       'You commented on the post'
-                     else
-                       comment.errors.full_messages.join(', ')
-                     end
-    redirect_to request.referrer
-  end
-
-  def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path, notice: 'Post deleted.'
-  end
-
   private
 
   def post_params
     params.require(:post).permit(:title, :content, :public)
-  end
-
-  def like_param
-    params.require(:post_like).permit(:post_id)
   end
 
   def comment_params

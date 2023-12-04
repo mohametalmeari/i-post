@@ -5,10 +5,12 @@
   <%= @post.content %> <br>
   <%= @post.public %>
   <%= button_to "Delete", post_path(@post), method: :delete %>
-  <%= form_with model: @post_like, url: like_path do |f| %>
-    <%= f.hidden_field :post_id, value: @post.id %>
-    <%= f.submit @like_text %>
+  <% if PostLike.find_by(post: @post, user: current_user) %>
+    <%= button_to "Unlike", unlike_path(@post.id), method: :delete %>
+  <% else %>
+    <%= button_to "Like", like_path(@post.id), method: :post %>
   <% end %>
+
   <%= form_with model: @comment, url: comment_path  do |f| %>
     <%= f.hidden_field :post_id, value: @post.id %>
     <%= f.label :content %>: 
@@ -25,7 +27,6 @@
       <% else %>
         <%= button_to "Like", like_comment_path(comment.id), method: :post %>
       <% end %>
-
       <%= button_to "Delete", post_comment_path(@post, comment), method: :delete %>
     </div>
   <% end %>
