@@ -19,16 +19,16 @@
     <div class="comment-card">
       <%= comment.user.username%>: 
       <%= comment.content %> <br>
-        <%= link_to "Reply", post_comment_path(@post, comment)%>
-      <%= form_with model: @comment_like, url: comment_like_path do |f| %>
-        <%= f.hidden_field :comment_id, value: comment.id %>
-        <% if CommentLike.find_by(comment: comment, user: current_user) %>
-          <%= f.submit 'Unike comment' %>
-        <% else %>
-          <%= f.submit 'Like comment' %>
-        <% end %>
+      <%= link_to "Reply", post_comment_path(@post, comment)%>
+
+
+      <% if CommentLike.find_by(comment: comment, user: current_user) %>
+        <%= button_to "Unlike", unlike_comment_path(comment.id), method: :delete %>
+      <% else %>
+        <%= button_to "Like", like_comment_path(comment.id), method: :post %>
       <% end %>
-      <br>
+
+
     </div>
   <% end %>
 </div>

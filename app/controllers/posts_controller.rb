@@ -47,19 +47,15 @@ class PostsController < ApplicationController
   end
 
   def like_comment
-    like = CommentLike.find_by(comment: comment_like_param[:comment_id], user: current_user)
-    if like
-      like.destroy
-      flash[:notice] = 'You unliked the comment'
-    else
-      comment_like = CommentLike.new(comment_like_param)
-      comment_like.user = current_user
-      flash[:notice] = if comment_like.save
-                         'You liked the comment'
-                       else
-                         comment_like.errors.full_messages.join(', ')
-                       end
-    end
+    comment = Comment.find(params[:id])
+    like = CommentLike.new(comment: comment, user: current_user)
+    like.save
+    redirect_to request.referrer
+  end
+
+  def unlike_comment
+    like = CommentLike.find_by(comment: params[:id], user: current_user)
+    like.destroy
     redirect_to request.referrer
   end
 
@@ -88,10 +84,6 @@ class PostsController < ApplicationController
 
   def like_param
     params.require(:post_like).permit(:post_id)
-  end
-
-  def comment_like_param
-    params.require(:comment_like).permit(:comment_id)
   end
 
   def comment_params
