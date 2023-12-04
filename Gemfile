@@ -73,3 +73,5 @@ end
 gem 'rubocop'
 
 gem 'devise'
+
+gem 'cancancan'
