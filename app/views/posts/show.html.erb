@@ -1,3 +1,4 @@
+<%= link_to "Back", posts_path%>
 <h1>Post Details</h1>
 <div class="post-card">
   <%= @post.title %> <br>
@@ -18,6 +19,7 @@
     <div class="comment-card">
       <%= comment.user.username%>: 
       <%= comment.content %> <br>
+        <%= link_to "Reply", post_comment_path(@post, comment)%>
       <%= form_with model: @comment_like, url: comment_like_path do |f| %>
         <%= f.hidden_field :comment_id, value: comment.id %>
         <% if CommentLike.find_by(comment: comment, user: current_user) %>
