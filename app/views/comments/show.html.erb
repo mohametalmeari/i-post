@@ -8,6 +8,7 @@
   <% else %>
     <%= button_to "Like", like_comment_path(@comment.id), method: :post %>
   <% end %>
+
   <%= form_with model: @comment_reply, url: comment_reply_path  do |f| %>
     <%= f.hidden_field :comment_id, value: @comment.id %>
     <%= f.label :content %>: 
@@ -19,14 +20,18 @@
       <%= comment_reply.user.username%>: 
       <%= comment_reply.content %> <br>
       <%= button_to "Delete", destroy_reply_path(comment_reply), method: :delete %>
-      <%= form_with model: ReplyLike, url: reply_like_path do |f| %>
-        <%= f.hidden_field :comment_reply_id, value: comment_reply.id %>
-        <% if ReplyLike.find_by(comment_reply: comment_reply, user: current_user) %>
-          <%= f.submit 'Unike reply' %>
-        <% else %>
-          <%= f.submit 'Like reply' %>
-        <% end %>
-      <% end %>
+
+
+  <% if ReplyLike.find_by(comment_reply: comment_reply, user: current_user) %>
+    <%= button_to "Unlike", unlike_reply_path(comment_reply.id), method: :delete %>
+  <% else %>
+    <%= button_to "Like", like_reply_path(comment_reply.id), method: :post %>
+  <% end %>
+
+
+
+
+
       <br>
     </div>
   <% end %>

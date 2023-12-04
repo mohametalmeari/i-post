@@ -19,7 +19,6 @@ class PostsController < ApplicationController
     end
   end
 
-  
   def destroy
     post = Post.find(params[:id])
     post.destroy
@@ -38,7 +37,7 @@ class PostsController < ApplicationController
 
   def like
     post = Post.find(params[:id])
-    like = PostLike.new(post: post, user: current_user)
+    like = PostLike.new(post:, user: current_user)
     like.save
     redirect_to request.referrer
   end
@@ -62,7 +61,7 @@ class PostsController < ApplicationController
 
   def like_comment
     comment = Comment.find(params[:id])
-    like = CommentLike.new(comment: comment, user: current_user)
+    like = CommentLike.new(comment:, user: current_user)
     like.save
     redirect_to request.referrer
   end

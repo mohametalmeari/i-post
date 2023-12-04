@@ -7,6 +7,12 @@ class CommentsController < ApplicationController
     @comment_replies = CommentReply.where(comment: @comment)
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to post_path(params[:post_id]), notice: 'Comment deleted.'
+  end
+
   def reply
     comment_reply = CommentReply.new(reply_params)
     comment_reply.user = current_user
@@ -18,33 +24,23 @@ class CommentsController < ApplicationController
     redirect_to request.referrer
   end
 
-  def like_reply
-    like = ReplyLike.find_by(comment_reply: reply_like_param[:comment_reply_id], user: current_user)
-    if like
-      like.destroy
-      flash[:notice] = 'You unliked the comment'
-    else
-      reply_like = ReplyLike.new(reply_like_param)
-      reply_like.user = current_user
-      flash[:notice] = if reply_like.save
-                         'You liked the comment'
-                       else
-                         reply_like.errors.full_messages.join(', ')
-                       end
-    end
-    redirect_to request.referrer
-  end
-
-  def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy
-    redirect_to post_path(params[:post_id]), notice: 'Comment deleted.'
-  end
-
   def destroy_reply
     comment_reply = CommentReply.find(params[:id])
     comment_reply.destroy
     redirect_to request.referrer, notice: 'Reply deleted.'
+  end
+
+  def like_reply
+    reply = CommentReply.find(params[:id])
+    like = ReplyLike.new(comment_reply: reply, user: current_user)
+    like.save
+    redirect_to request.referrer
+  end
+
+  def unlike_reply
+    like = ReplyLike.find_by(comment_reply: params[:id], user: current_user)
+    like.destroy
+    redirect_to request.referrer
   end
 
   private
