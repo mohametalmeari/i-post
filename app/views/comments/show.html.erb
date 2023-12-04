@@ -2,13 +2,12 @@
 <h1>Comment Details</h1>
 <div class="comment-card">
   <%= @comment.content %> <br>
-  <%= button_to "Delete", post_comment_path(@post, @comment), method: :delete %>
+  <%= button_to "Delete", post_comment_path(@post, @comment), method: :delete if can? :destroy, @comment %>
   <% if CommentLike.find_by(comment: @comment, user: current_user) %>
     <%= button_to "Unlike", unlike_comment_path(@comment.id), method: :delete %>
   <% else %>
     <%= button_to "Like", like_comment_path(@comment.id), method: :post %>
   <% end %>
-
   <%= form_with model: @comment_reply, url: comment_reply_path  do |f| %>
     <%= f.hidden_field :comment_id, value: @comment.id %>
     <%= f.label :content %>: 
@@ -19,19 +18,12 @@
     <div class="reply-card">
       <%= comment_reply.user.username%>: 
       <%= comment_reply.content %> <br>
-      <%= button_to "Delete", destroy_reply_path(comment_reply), method: :delete %>
-
-
-  <% if ReplyLike.find_by(comment_reply: comment_reply, user: current_user) %>
-    <%= button_to "Unlike", unlike_reply_path(comment_reply.id), method: :delete %>
-  <% else %>
-    <%= button_to "Like", like_reply_path(comment_reply.id), method: :post %>
-  <% end %>
-
-
-
-
-
+      <%= button_to "Delete", destroy_reply_path(comment_reply), method: :delete if can? :destroy_reply, comment_reply %>
+      <% if ReplyLike.find_by(comment_reply: comment_reply, user: current_user) %>
+        <%= button_to "Unlike", unlike_reply_path(comment_reply.id), method: :delete %>
+      <% else %>
+        <%= button_to "Like", like_reply_path(comment_reply.id), method: :post %>
+      <% end %>
       <br>
     </div>
   <% end %>

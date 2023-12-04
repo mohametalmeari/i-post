@@ -18,7 +18,7 @@ class Ability
     can :manage, CommentLike, { user_id: user.id }
 
     can :manage, CommentReply
-    cannot :destroy_reply, CommentReply do |comment_reply|
+    cannot :destroy_reply, CommentReply do |comment_reply| # custom action defined in comments_controller
       comment_reply.user_id != user.id
     end
 
