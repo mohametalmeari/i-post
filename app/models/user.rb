@@ -1,10 +1,10 @@
 class User < ApplicationRecord
-  has_many :posts, foreign_key: 'user_id'
-  has_many :comments, foreign_key: 'user_id'
-  has_many :post_likes, foreign_key: 'user_id'
-  has_many :comment_likes, foreign_key: 'user_id'
-  has_many :comment_replies, foreign_key: 'user_id'
-  has_many :reply_likes, foreign_key: 'user_id'
+  has_many :posts, foreign_key: 'user_id', dependent: :destroy
+  has_many :comments, foreign_key: 'user_id', dependent: :destroy
+  has_many :post_likes, foreign_key: 'user_id', dependent: :destroy
+  has_many :comment_likes, foreign_key: 'user_id', dependent: :destroy
+  has_many :comment_replies, foreign_key: 'user_id', dependent: :destroy
+  has_many :reply_likes, foreign_key: 'user_id', dependent: :destroy
 
   validates :name, presence: true
   validates :username, presence: true,
