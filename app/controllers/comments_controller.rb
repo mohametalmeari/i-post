@@ -1,4 +1,9 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+  rescue_from CanCan::AccessDenied do |_exception|
+    redirect_to root_path, notice: 'Access denied'
+  end
+
   def show
     @post = Post.find(params[:post_id])
     @comment = Comment.find_by(post_id: params[:post_id], id: params[:id])
@@ -25,20 +30,21 @@ class CommentsController < ApplicationController
   end
 
   def destroy_reply
-    comment_reply = CommentReply.find(params[:id])
+    comment_reply = CommentReply.find(params[:reply_id])
+    authorize! :destroy_reply, comment_reply # custom action
     comment_reply.destroy
     redirect_to request.referrer, notice: 'Reply deleted.'
   end
 
   def like_reply
-    reply = CommentReply.find(params[:id])
+    reply = CommentReply.find(params[:reply_id])
     like = ReplyLike.new(comment_reply: reply, user: current_user)
     like.save
     redirect_to request.referrer
   end
 
   def unlike_reply
-    like = ReplyLike.find_by(comment_reply: params[:id], user: current_user)
+    like = ReplyLike.find_by(comment_reply: params[:reply_id], user: current_user)
     like.destroy
     redirect_to request.referrer
   end

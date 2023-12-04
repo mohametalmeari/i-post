@@ -1,11 +1,13 @@
 <h1>Posts List</h1>
 <% @posts.each do |post|%>
   <%= link_to post_path(post) do %>
-    <div class="post-card">
-      <%= post.title %> <br>
-      <%= post.content %> <br>
-      <%= post.public %> <br>
-      <br>
-    </div>
+    <% if post.public || post.user.role == 'admin' %>
+      <div class="post-card">
+        <%= post.title %> <br>
+        <%= post.content %> <br>
+        <%= post.public if current_user.role == 'admin'%> 
+        <br>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
