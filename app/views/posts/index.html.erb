@@ -3,6 +3,7 @@
   <%= link_to post_path(post) do %>
     <% if post.public || post.user.role == 'admin' %>
       <div class="post-card">
+        <%= post.user.name %>: <br>
         <%= post.title %> <br>
         <%= post.content %> <br>
         <%= post.public if current_user.role == 'admin'%> 
