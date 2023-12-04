@@ -1,13 +1,16 @@
+<%= link_to "Back", posts_path%>
 <h1>Post Details</h1>
 <div class="post-card">
   <%= @post.title %> <br>
   <%= @post.content %> <br>
   <%= @post.public %>
   <%= button_to "Delete", post_path(@post), method: :delete %>
-  <%= form_with model: @post_like, url: like_path do |f| %>
-    <%= f.hidden_field :post_id, value: @post.id %>
-    <%= f.submit @like_text %>
+  <% if PostLike.find_by(post: @post, user: current_user) %>
+    <%= button_to "Unlike", unlike_path(@post.id), method: :delete %>
+  <% else %>
+    <%= button_to "Like", like_path(@post.id), method: :post %>
   <% end %>
+
   <%= form_with model: @comment, url: comment_path  do |f| %>
     <%= f.hidden_field :post_id, value: @post.id %>
     <%= f.label :content %>: 
@@ -18,15 +21,13 @@
     <div class="comment-card">
       <%= comment.user.username%>: 
       <%= comment.content %> <br>
-      <%= form_with model: @comment_like, url: comment_like_path do |f| %>
-        <%= f.hidden_field :comment_id, value: comment.id %>
-        <% if CommentLike.find_by(comment: comment, user: current_user) %>
-          <%= f.submit 'Unike comment' %>
-        <% else %>
-          <%= f.submit 'Like comment' %>
-        <% end %>
+      <%= link_to "Reply", post_comment_path(@post, comment)%>
+      <% if CommentLike.find_by(comment: comment, user: current_user) %>
+        <%= button_to "Unlike", unlike_comment_path(comment.id), method: :delete %>
+      <% else %>
+        <%= button_to "Like", like_comment_path(comment.id), method: :post %>
       <% end %>
-      <br>
+      <%= button_to "Delete", post_comment_path(@post, comment), method: :delete %>
     </div>
   <% end %>
 </div>
