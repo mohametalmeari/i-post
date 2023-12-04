@@ -1,4 +1,9 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path, notice: 'Access denied' 
+  end
+
   def index
     @posts = Post.all.order(created_at: :desc).limit(100)
   end
@@ -60,14 +65,15 @@ class PostsController < ApplicationController
   end
 
   def like_comment
-    comment = Comment.find(params[:id])
+    puts 'zzzzzzzzzzzzzzzzzzzzzz'
+    comment = Comment.find(params[:comment_id])
     like = CommentLike.new(comment:, user: current_user)
     like.save
     redirect_to request.referrer
   end
 
   def unlike_comment
-    like = CommentLike.find_by(comment: params[:id], user: current_user)
+    like = CommentLike.find_by(comment: params[:comment_id], user: current_user)
     like.destroy
     redirect_to request.referrer
   end
