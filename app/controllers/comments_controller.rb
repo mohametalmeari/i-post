@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, notice: 'Access denied' 
+  rescue_from CanCan::AccessDenied do |_exception|
+    redirect_to root_path, notice: 'Access denied'
   end
 
   def show
@@ -31,6 +31,7 @@ class CommentsController < ApplicationController
 
   def destroy_reply
     comment_reply = CommentReply.find(params[:reply_id])
+    authorize! :destroy_reply, comment_reply # custom action
     comment_reply.destroy
     redirect_to request.referrer, notice: 'Reply deleted.'
   end
