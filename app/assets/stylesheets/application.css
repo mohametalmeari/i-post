@@ -17,6 +17,7 @@ a {
   color: inherit;
   font-size: inherit;
   font-family: inherit;
+  cursor: pointer;
 }
 
 nav {
@@ -29,7 +30,7 @@ nav {
 
 .nav-link {
   color: #023047;
-  border-left: solid #fb8500 1px;
+  border-left: solid #fb8500 2px;
   flex: 1;
   text-align: center;
   padding: 4px 0;
@@ -45,4 +46,8 @@ nav {
 
 .nav-link:first-child {
   border-left: none;
+}
+
+.nav-link:last-child:hover {
+  color: red;
 }
