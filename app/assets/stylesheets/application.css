@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nova+Square&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body{
+body {
   color: #023047;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -17,6 +18,7 @@ body{
 a {
   text-decoration: none;
   color: inherit;
+  display: flex;
 }
 
 .link {
@@ -124,7 +126,6 @@ main {
   font-style: italic;
 }
 
-
 .post-content {
   overflow: hidden;
 }
@@ -134,6 +135,7 @@ main {
   gap: 8px;
   align-items: center;
 }
+
 .tag {
   /* background-color: black; */
   border: solid 1px black;
@@ -144,7 +146,6 @@ main {
   text-shadow: none;
   box-shadow: none;
 }
-
 
 .private-tag {
   /* background-color: #fb8500; */
@@ -158,8 +159,7 @@ main {
   color: #219ebc;
 }
 
-footer{
-
+footer {
   color: #219ebc;
   background-color: #023047;
   padding: 16px;
@@ -172,5 +172,13 @@ footer h2 {
 
 footer p {
   font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
   margin-bottom: 8px;
 }
