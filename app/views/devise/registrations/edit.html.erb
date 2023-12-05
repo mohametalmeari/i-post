@@ -2,7 +2,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'user-form' }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field">
-    <%= f.label :email, class: 'field-label'  %>
+    <%= f.label :email, class: 'field-label' %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'field-input' %>
   </div>
   <div class="field">
@@ -17,10 +17,7 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
   <div class="field">
-    <% f.label :password, class: 'field-label' %><br />
-    <span class="field-label">
-      Password
-    </span>
+    <%= f.label :password, class: 'field-label' %><br />
     <%= f.password_field :password, autocomplete: "new-password", placeholder: "New password", class: 'field-input' %>
     <% if @minimum_password_length %>
       <br />
@@ -42,7 +39,7 @@
   </div>
   <div class="actions">
     <%= link_to "Cancel", :back, class: 'submit' %>
-    <%= f.submit "Update", class: 'submit'  %>
+    <%= f.submit "Update", class: 'submit' %>
     <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'delete'  %>
   </div>
 <% end %>
