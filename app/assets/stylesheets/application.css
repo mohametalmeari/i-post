@@ -29,11 +29,14 @@ a {
 }
 
 nav {
+  position: sticky;
+  top: 0;
   display: flex;
   background-color: #ffb703;
   align-items: center;
   justify-content: space-between;
   padding: 6px 0;
+  box-shadow: 0 1px 2px 0 #fb8500;
 }
 
 .nav-link {
@@ -157,8 +160,8 @@ main {
 
 footer{
 
-  color: #023047;
-  background-color: #fb8500;
+  color: #219ebc;
+  background-color: #023047;
   padding: 16px;
 }
 
