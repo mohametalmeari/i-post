@@ -185,13 +185,14 @@ footer a {
   gap: 8px;
   align-items: center;
 }
-.post-form{
+
+.post-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.text-field{
+.text-field {
   padding: 4px 8px;
   border: solid 2px #8ecae6;
   border-radius: 4px;
@@ -202,11 +203,7 @@ footer a {
   border: solid 2px #fb8500;
 }
 
-.text-area:focus {
-  border: solid 2px #fb8500;
-}
-
-.text-area{
+.text-area {
   padding: 4px 8px;
   border: solid 2px #8ecae6;
   border-radius: 4px;
@@ -215,7 +212,12 @@ footer a {
   resize: vertical;
 }
 
-.submit, .delete{
+.text-area:focus {
+  border: solid 2px #fb8500;
+}
+
+.submit,
+.delete {
   width: fit-content;
   padding: 6px 8px;
   border-radius: 4px;
@@ -227,13 +229,13 @@ footer a {
   transition: background-color 0.2s ease, color 0.1s ease, border-color 0.1s ease;
 }
 
-.delete{
-  border-color:#ef233c;
+.delete {
+  border-color: #ef233c;
   background-color: #ef233c;
 }
 
-.delete:hover{
-  border-color:#ef233bbb;
+.delete:hover {
+  border-color: #ef233bbb;
   background-color: #ef233bbb;
 }
 
@@ -246,36 +248,35 @@ footer a {
   color: #023047;
 }
 
-.check-box-container{
+.check-box-container {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.field{
+.field {
   display: flex;
   align-items: center;
 }
 
-
-.field-label{
+.field-label {
   padding: 4px 8px;
   border: solid 2px #219ebc;
   border-right: none;
   border-radius: 4px 0 0 4px;
   outline: none;
-  font-size: 16px;
+  font-size: 14px;
   flex: 4;
   background-color: #219ebc;
   color: white;
 }
 
-.field-input{
+.field-input {
   padding: 4px 8px;
   border: solid 2px #219ebc;
   border-radius: 0 4px 4px 0;
   outline: none;
-  font-size: 16px;
+  font-size: 14px;
   flex: 10;
 }
 
@@ -288,8 +289,13 @@ footer a {
   gap: 16px;
   flex-direction: column;
 }
+
 .actions {
   display: flex;
   gap: 8px;
   align-items: center;
+}
+
+main h2 {
+  margin-bottom: 8px;
 }
