@@ -1,10 +1,10 @@
-<h2>New post is being created by <i> <%= current_user.name %> </i> </h2>
-<%= form_with model: @post, url: posts_path  do |f| %>
-  <%= f.label :title %>: 
-  <%= f.text_field :title %> <br>
-  <%= f.label :content %>: 
-  <%= f.text_area :content %> <br>
-  <%= f.label :public %>: 
-  <%= f.check_box :public, checked: true %> <br>
-  <%= f.submit "Create Post" %>
+<h2>New Post</h2>
+<%= form_with model: @post, url: posts_path, html: { class: 'post-form' }  do |f| %>
+  <%= f.text_field :title, placeholder: "Post Title", class: 'text-field'%>
+  <%= f.text_area :content, placeholder: "Post content ...", class: 'text-area' %>
+  <div class="check-box-container">
+    <%= f.check_box :public, checked: true %>
+    <%= f.label :public %>
+  </div>
+  <%= f.submit "Create Post", class: 'submit' %>
 <% end %>
