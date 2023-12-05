@@ -136,7 +136,6 @@ main {
 }
 
 .tag {
-  /* background-color: black; */
   border: solid 1px black;
   color: black;
   font-size: 10px;
@@ -147,13 +146,11 @@ main {
 }
 
 .private-tag {
-  /* background-color: #fb8500; */
   border-color: #fb8500;
   color: #fb8500;
 }
 
 .mine-tag {
-  /* background-color: #219ebc; */
   border-color: #219ebc;
   color: #219ebc;
 }
@@ -161,7 +158,10 @@ main {
 footer {
   color: #219ebc;
   background-color: #023047;
-  padding: 16px;
+  padding: 48px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 footer h2 {
@@ -171,7 +171,6 @@ footer h2 {
 
 footer p {
   font-size: 14px;
-  margin-bottom: 8px;
   display: flex;
   gap: 8px;
 }
@@ -185,5 +184,118 @@ footer a {
   flex-direction: row;
   gap: 8px;
   align-items: center;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.text-field {
+  padding: 4px 8px;
+  border: solid 2px #8ecae6;
+  border-radius: 4px;
+  outline: none;
+}
+
+.text-field:focus {
+  border: solid 2px #fb8500;
+}
+
+.text-area {
+  padding: 4px 8px;
+  border: solid 2px #8ecae6;
+  border-radius: 4px;
+  outline: none;
+  min-height: 150px;
+  resize: vertical;
+}
+
+.text-area:focus {
+  border: solid 2px #fb8500;
+}
+
+.submit,
+.delete {
+  width: fit-content;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: solid 2px #ffb703;
+  background-color: #fb8500;
+  color: white;
+  font-family: 'Nova Square', sans-serif;
+  font-size: 16px;
+  transition: background-color 0.2s ease, color 0.1s ease, border-color 0.1s ease;
+}
+
+.delete {
+  border-color: #ef233c;
+  background-color: #ef233c;
+}
+
+.delete:hover {
+  border-color: #ef233bbb;
+  background-color: #ef233bbb;
+}
+
+.submit:hover {
+  border-color: #ffb803bb;
+  background-color: #fb8600bb;
+}
+
+.submit:focus {
+  color: #023047;
+}
+
+.check-box-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+}
+
+.field-label {
+  padding: 4px 8px;
+  border: solid 2px #219ebc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+  font-size: 14px;
+  flex: 4;
+  background-color: #219ebc;
+  color: white;
+}
+
+.field-input {
+  padding: 4px 8px;
+  border: solid 2px #219ebc;
+  border-radius: 0 4px 4px 0;
+  outline: none;
+  font-size: 14px;
+  flex: 10;
+}
+
+.field-input:focus {
+  background-color: #8ecae6;
+}
+
+.user-form {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+main h2 {
   margin-bottom: 8px;
 }
