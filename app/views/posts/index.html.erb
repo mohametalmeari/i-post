@@ -1,14 +1,2 @@
-<h1>Posts List</h1>
-<% @posts.each do |post|%>
-  <%= link_to post_path(post) do %>
-    <% if post.public || current_user.role == 'admin' || current_user.id == post.user_id %>
-      <div class="post-card">
-        <%= post.user.name %>: <br>
-        <%= post.title %> <br>
-        <%= post.content %> <br>
-        <%= 'Private' if !post.public && (current_user.role == 'admin' || current_user.id == post.user.id) %>
-        <br>
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
+<h2>Posts List</h2>
+<%= render 'posts/cards', posts: @posts %>

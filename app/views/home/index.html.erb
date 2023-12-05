@@ -1,17 +1,8 @@
 <% unless @all_posts.size == 0 %>
   <h2>Recent Posts</h2>
-  <% @posts.each do |post|%>
-    <%= link_to post_path(post) do %>
-      <div class="post-card">
-        <%= post.user.name %>:
-        <%= truncate(post.title, length: 30, omission: '...') %> 
-        <%= 'Private' if !post.public && (current_user.role == 'admin' || current_user.id == post.user.id) %> <br>
-        <%= truncate(post.content, length: 20, omission: '...') %> 
-      </div>
-    <% end %>
-  <% end %>
-  <%= link_to "All Posts ( #{@all_posts.size} )", posts_path %> |
+  <%= render 'posts/cards', posts: @posts %>
+  <%= link_to "All Posts ( #{@all_posts.size} )", posts_path, class: "all-posts-link" %>
 <% else %>
   <h2>No Posts</h2>
 <% end %>
-<%= link_to 'New Post', new_post_path%>
+<%= link_to 'New Post', new_post_path, class: "new-posts-link" %>
