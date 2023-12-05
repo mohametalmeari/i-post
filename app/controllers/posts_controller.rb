@@ -65,7 +65,6 @@ class PostsController < ApplicationController
   end
 
   def like_comment
-    puts 'zzzzzzzzzzzzzzzzzzzzzz'
     comment = Comment.find(params[:comment_id])
     like = CommentLike.new(comment:, user: current_user)
     like.save

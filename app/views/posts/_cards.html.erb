@@ -1,0 +1,31 @@
+<div class="posts-container">
+  <% @posts.each do |post|%>
+    <%= link_to post_path(post) do %>
+      <div class="post-card">
+        <section class="post-header">
+          <span class="post-user">
+            <%= truncate(post.user.name, length: 10, omission: '... ') %>:
+          </span>
+          <span class="post-title">
+            <%= truncate(post.title, length: 20, omission: '...') %>
+          </span>
+        </section>
+        <p class="post-content">
+          <%= truncate(post.content, length: 100, omission: '...') %>
+        </p>
+        <section class="post-footer">
+        <% if current_user.id == post.user.id %>
+          <span class="mine-tag tag">
+            #mine
+          </span>
+        <% end %>
+        <% if !post.public && (current_user.role == 'admin' || current_user.id == post.user.id) %>
+          <span class="private-tag tag">
+            #private
+          </span>
+        <% end %>
+        </section>
+      </div>
+    <% end %>
+  <% end %>
+</div>

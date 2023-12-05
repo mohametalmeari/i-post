@@ -1,15 +1,189 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nova+Square&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  color: #023047;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link {
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  background-color: #ffb703;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  box-shadow: 0 1px 2px 0 #fb8500;
+}
+
+.nav-link {
+  border-left: solid #fb8500 2px;
+  flex: 1;
+  text-align: center;
+  padding: 4px 0;
+  font-family: 'Nova Square', sans-serif;
+  font-size: 16px;
+  transition: flex 0.3s ease, color 0.2s ease;
+}
+
+.all-posts-link,
+.new-posts-link {
+  border-left: solid #023047 2px;
+  font-family: 'Nova Square', sans-serif;
+  font-size: 16px;
+  padding: 0 16px;
+  transition: color 0.3s ease;
+}
+
+.all-posts-link {
+  padding-left: 0;
+  border-left: none;
+}
+
+.all-posts-link:hover,
+.new-posts-link:hover {
+  color: #fb8500;
+}
+
+.nav-link:hover {
+  flex: 1.5;
+  color: #219ebc;
+}
+
+.nav-link:first-child {
+  border-left: none;
+}
+
+.nav-link:last-child:hover {
+  color: red;
+}
+
+main {
+  padding: 1rem;
+  background-color: white;
+  flex: 1;
+}
+
+.post-card {
+  background-color: #8ecae6;
+  box-shadow: 2px 2px 2px 0 #219ebc;
+  text-shadow: 1px 1px 1px #8ecae6;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background-color 0.2s ease, color 0.1s ease;
+}
+
+.post-card:hover {
+  background-color: #023047;
+  color: white;
+  text-shadow: none;
+}
+
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 8px 0;
+}
+
+.post-header {
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.post-title {
+  flex: 1;
+  font-style: italic;
+}
+
+.post-content {
+  overflow: hidden;
+}
+
+.post-footer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tag {
+  /* background-color: black; */
+  border: solid 1px black;
+  color: black;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.private-tag {
+  /* background-color: #fb8500; */
+  border-color: #fb8500;
+  color: #fb8500;
+}
+
+.mine-tag {
+  /* background-color: #219ebc; */
+  border-color: #219ebc;
+  color: #219ebc;
+}
+
+footer {
+  color: #219ebc;
+  background-color: #023047;
+  padding: 16px;
+}
+
+footer h2 {
+  font-family: 'Nova Square', sans-serif;
+  font-size: 16px;
+}
+
+footer p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+footer a {
+  display: flex;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
