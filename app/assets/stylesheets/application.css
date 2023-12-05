@@ -3,6 +3,9 @@
 
 body{
   color: #023047;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 * {
   margin: 0;
@@ -78,6 +81,7 @@ nav {
 main {
   padding: 1rem;
   background-color: white;
+  flex: 1;
 }
 
 .post-card {
@@ -106,6 +110,7 @@ main {
 }
 
 .post-header {
+  font-weight: bolder;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -113,6 +118,7 @@ main {
 
 .post-title {
   flex: 1;
+  font-style: italic;
 }
 
 
@@ -126,8 +132,9 @@ main {
   align-items: center;
 }
 .tag {
-  background-color: black;
-  color: white;
+  /* background-color: black; */
+  border: solid 1px black;
+  color: black;
   font-size: 10px;
   padding: 2px 6px;
   border-radius: 8px;
@@ -137,9 +144,30 @@ main {
 
 
 .private-tag {
-  background-color: #fb8500;
+  /* background-color: #fb8500; */
+  border-color: #fb8500;
+  color: #fb8500;
 }
 
 .mine-tag {
-  background-color: #219ebc;
+  /* background-color: #219ebc; */
+  border-color: #219ebc;
+  color: #219ebc;
+}
+
+footer{
+
+  color: #023047;
+  background-color: #fb8500;
+  padding: 16px;
+}
+
+footer h2 {
+  font-family: 'Nova Square', sans-serif;
+  font-size: 16px;
+}
+
+footer p {
+  font-size: 14px;
+  margin-bottom: 8px;
 }
