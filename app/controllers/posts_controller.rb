@@ -34,6 +34,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @like_text = 'Like'
     @like_text = 'Unlike' if PostLike.find_by(post: @post, user: current_user)
+    @likes_count = PostLike.count_likes(@post)
     @post_like = PostLike.new
     @comment_like = CommentLike.new
     @comments = Comment.where(post: @post)
