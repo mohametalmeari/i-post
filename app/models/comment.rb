@@ -8,22 +8,22 @@ class Comment < ApplicationRecord
     count = CommentLike.where(comment: self).count
     if count == 1
       "#{count} Like"
-    elsif count == 0
-      "No Likes"
+    elsif count.zero?
+      'No Likes'
     else
       "#{count} Likes"
     end
   end
+
   def count_replies
     count = CommentReply.where(comment: self).count
     if count == 1
       "#{count} Reply"
-    elsif count == 0
-      "No Replies"
+    elsif count.zero?
+      'No Replies'
     else
       "#{count} Replies"
     end
   end
-
 end
 return

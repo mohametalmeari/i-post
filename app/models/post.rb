@@ -9,8 +9,8 @@ class Post < ApplicationRecord
     count = PostLike.where(post: self).count
     if count == 1
       "#{count} Like"
-    elsif count == 0
-      "No Likes"
+    elsif count.zero?
+      'No Likes'
     else
       "#{count} Likes"
     end
@@ -20,12 +20,12 @@ class Post < ApplicationRecord
     comments = Comment.where(post: self)
     count = comments.count
     comments.each do |comment|
-      count += CommentReply.where(comment: comment).count
+      count += CommentReply.where(comment:).count
     end
     if count == 1
       "#{count} Comment"
-    elsif count == 0
-      "No Comments"
+    elsif count.zero?
+      'No Comments'
     else
       "#{count} Comments"
     end

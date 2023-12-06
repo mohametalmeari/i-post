@@ -346,7 +346,7 @@ main h2 {
   height: 30px;
 }
 
-.icon-container.comment{
+.icon-container.comment {
   width: 20px;
   height: 20px;
 }
@@ -375,8 +375,6 @@ main h2 {
   flex-direction: column;
   gap: 8px;
 }
-
-
 
 .writer-name {
   border-top: solid 1px #8ecae6;
