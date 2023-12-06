@@ -38,6 +38,7 @@ nav {
   justify-content: space-between;
   padding: 6px 0;
   box-shadow: 0 1px 2px 0 #fb8500;
+  z-index: 999;
 }
 
 .nav-link {
@@ -83,6 +84,8 @@ nav {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   background-color: white;
   flex: 1;
@@ -212,6 +215,10 @@ footer a {
   resize: vertical;
 }
 
+.text-area.comment {
+  min-height: 50px;
+}
+
 .text-area:focus {
   border: solid 2px #fb8500;
 }
@@ -298,4 +305,102 @@ footer a {
 
 main h2 {
   margin-bottom: 8px;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment-card {
+  border-radius: 0 16px 16px;
+  padding: 16px;
+  border: solid 2px #8ecae6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.likes-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #219ebc;
+}
+
+.icon-container {
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.icon-container.comment {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-container > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hover-like {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-like:hover {
+  opacity: 1;
+}
+
+.post-text {
+  border: solid 2px #219ebc;
+  border-top-width: 4px;
+  padding: 16px;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.writer-name {
+  border-top: solid 1px #8ecae6;
+  padding-top: 4px;
+  font-size: 12px;
+}
+
+.back-link {
+  width: fit-content;
+  margin-bottom: 8px;
+  color: #219ebc;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.back-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background-color: #219ebc;
+  transition: width 0.3s ease;
+}
+
+.back-link:hover::after {
+  width: 100%;
 }
