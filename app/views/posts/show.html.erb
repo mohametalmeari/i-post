@@ -1,8 +1,13 @@
-<%= link_to "Back", posts_path %>
+<%= link_to "Back", posts_path, class: 'back-link' %>
 <h2><%= @post.title %></h2>
 <div class="post-container">
-  <p>
-    <%= @post.content %>
+  <p class="post-text">
+    <span>
+      <%= @post.content %>
+    </span>
+    <em class="writer-name">
+      Writen by <%= @post.user.name %>
+    </em>
   </p>
   <div class="likes-container">
     <% if PostLike.find_by(post: @post, user: current_user) %>
@@ -16,7 +21,6 @@
       <% end %>
     <% end %>
     <%= @likes_count %>
-  
   </div>
   <div class="btn-container">
     <%= button_to "Change to private", posts_path, method: :post, class: 'submit' if @post.public %>
