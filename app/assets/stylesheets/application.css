@@ -299,3 +299,50 @@ footer a {
 main h2 {
   margin-bottom: 8px;
 }
+
+.post-container{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn-container{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+}
+
+.likes-container{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #219ebc;
+}
+
+.icon-container{
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.icon-container > *{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hover-like{
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-like:hover{
+  opacity: 1;
+}
+
