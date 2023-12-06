@@ -38,6 +38,7 @@ nav {
   justify-content: space-between;
   padding: 6px 0;
   box-shadow: 0 1px 2px 0 #fb8500;
+  z-index: 999;
 }
 
 .nav-link {
@@ -214,6 +215,10 @@ footer a {
   resize: vertical;
 }
 
+.text-area.comment {
+  min-height: 50px;
+}
+
 .text-area:focus {
   border: solid 2px #fb8500;
 }
@@ -308,6 +313,15 @@ main h2 {
   gap: 16px;
 }
 
+.comment-card {
+  border-radius: 0 16px 16px;
+  padding: 16px;
+  border: solid 2px #8ecae6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .btn-container {
   display: flex;
   align-items: center;
@@ -330,6 +344,11 @@ main h2 {
   position: relative;
   width: 30px;
   height: 30px;
+}
+
+.icon-container.comment{
+  width: 20px;
+  height: 20px;
 }
 
 .icon-container > * {
@@ -356,6 +375,8 @@ main h2 {
   flex-direction: column;
   gap: 8px;
 }
+
+
 
 .writer-name {
   border-top: solid 1px #8ecae6;

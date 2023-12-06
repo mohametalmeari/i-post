@@ -20,29 +20,49 @@
         <%= image_tag "hover-like.svg", height: 30, class: 'hover-like' %>
       <% end %>
     <% end %>
-    <%= @likes_count %>
+    <%= PostLike.count_likes(@post) %> |
+    <%= Comment.count_comments(@post) %>
   </div>
   <div class="btn-container">
     <%= button_to "Change to private", posts_path, method: :post, class: 'submit' if @post.public %>
     <%= button_to "Delete", post_path(@post), method: :delete, class: 'delete' if can? :destroy, @post %>
   </div>
-  <%= form_with model: @comment, url: comment_path  do |f| %>
+  <%= form_with model: @comment, url: comment_path, html: { class: 'post-form' }  do |f| %>
     <%= f.hidden_field :post_id, value: @post.id %>
-    <%= f.label :content %>: 
-    <%= f.text_area :content %> <br>
-    <%= f.submit "Comment" %>
+    <% f.label :content %>
+    <%= f.text_area :content, placeholder: 'Write a comment ...', class: 'text-area comment' %>
+    <%= f.submit "Comment", class: 'submit' %>
   <% end %>
   <% @comments.each do |comment|%>
     <div class="comment-card">
-      <%= comment.user.username%>: 
-      <%= comment.content %> <br>
-      <%= link_to "Reply", post_comment_path(@post, comment)%>
-      <% if CommentLike.find_by(comment: comment, user: current_user) %>
-        <%= button_to "Unlike", unlike_comment_path(comment.id), method: :delete %>
-      <% else %>
-        <%= button_to "Like", like_comment_path(comment.id), method: :post %>
-      <% end %>
-      <%= button_to "Delete", post_comment_path(@post, comment), method: :delete if can? :destroy, comment %>
+      <div class="comment-text">
+        <b style="color: #219ebc"><%= truncate(comment.user.username, length: 10, omission: '...')%>;</b>
+        <em>❝ <%= comment.content %> ❞</em>
+        </div>
+        <div class="writer-name">
+          <%= CommentLike .count_likes(comment) %> | 00 Comments
+        </div>
+        <div class="likes-container">
+          <% if CommentLike.find_by(comment: comment, user: current_user) %>
+            <%= button_to unlike_comment_path(comment.id), method: :delete, class: 'icon-container comment' do %>
+              <%= image_tag "unlike.svg", height: 20, class: 'active-like'  %>
+            <% end %>
+          <% else %>
+            <%= button_to like_comment_path(comment.id), method: :post, class: 'icon-container comment' do %>
+              <%= image_tag "like.svg", height: 20, class: 'active-like' %>
+              <%= image_tag "hover-like.svg", height: 20, class: 'hover-like' %>
+            <% end %>
+          <% end %>
+          <%= link_to post_comment_path(@post, comment), class: 'icon-container comment' do %>
+              <%= image_tag "comment.svg", height: 20 %>
+          <% end %>
+          <% if can? :destroy, comment %>
+            <%= button_to post_comment_path(@post, comment), method: :delete, class: 'icon-container comment'  do %>
+              <%= image_tag "delete.svg", height: 20 %>
+            <% end %>
+          <% end %>
+        
+      </div>
     </div>
   <% end %>
 </div>
