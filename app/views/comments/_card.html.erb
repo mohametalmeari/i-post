@@ -8,6 +8,7 @@
     <%= comment.count_likes %> | <%= comment.count_replies %>
   </div>
   <div class="likes-container">
+  <% if user_signed_in? %>
     <% if CommentLike.find_by(comment: comment, user: current_user) %>
       <%= button_to unlike_comment_path(comment.id), method: :delete, class: 'icon-container comment' do %>
         <%= image_tag "unlike.svg", height: 20, class: 'active-like'  %>
@@ -18,6 +19,7 @@
         <%= image_tag "hover-like.svg", height: 20, class: 'hover-like' %>
       <% end %>
     <% end %>
+  <% end %>
     <% unless no_reply %>
       <%= link_to post_comment_path(@post, comment), class: 'icon-container comment' do %>
         <%= image_tag "comment.svg", height: 20 %>
