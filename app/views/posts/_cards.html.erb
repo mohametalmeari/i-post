@@ -14,7 +14,7 @@
           <%= truncate(post.content, length: 100, omission: '...') %>
         </p>
         <span class="writer-name">
-          <%= post.count_likes %> | 00 Comments
+          <%= post.count_likes %> | <%= post.count_comments %>
         </span>
         <section class="post-footer">
           <% if current_user.id == post.user.id %>
