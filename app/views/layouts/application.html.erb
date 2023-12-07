@@ -10,8 +10,12 @@
   </head>
   <body>
     <%= render 'home/header' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+      <p class="notice fadeout"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="notice fadeout"><%= alert %></p>
+    <% end %>
     <main>
       <%= yield %>
     </main>

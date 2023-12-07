@@ -13,14 +13,14 @@
   <%= "|" if can? :destroy, @post %>
   <%= button_to "Delete", post_path(@post), method: :delete, class: 'back-link link del-link' if can? :destroy, @post %>
 </div>
-<h2><%= @post.title %></h2>
+<h2  style="<%= "text-align: right;" if @post.title[0].match?(/\p{Arabic}/) %>"><%= @post.title %></h2>
 <div class="post-container">
   <div class="post-text">
-    <span>
-      <%= @post.content %>
+    <span style="<%= "text-align: right;" if @post.content[0].match?(/\p{Arabic}/) %>">
+      <%= @post.content.gsub(/\n/, '<br>').html_safe %>
     </span>
     <em class="writer-name">
-      Writen by <%= @post.user.name %>
+      Written by <%= @post.user.name %>
     </em>
     <section class="post-footer">
       <% if current_user.id == @post.user.id %>
@@ -56,34 +56,6 @@
     <%= f.submit "Comment", class: 'submit' %>
   <% end %>
   <% @comments.each do |comment|%>
-    <div class="comment-card">
-      <div class="comment-text">
-        <b style="color: #219ebc"><%= truncate(comment.user.username, length: 10, omission: '...')%>;</b>
-        <em>❝ <%= comment.content %> ❞</em>
-      </div>
-      <div class="writer-name">
-        <%= comment.count_likes %> | <%= comment.count_replies %>
-      </div>
-      <div class="likes-container">
-        <% if CommentLike.find_by(comment: comment, user: current_user) %>
-          <%= button_to unlike_comment_path(comment.id), method: :delete, class: 'icon-container comment' do %>
-            <%= image_tag "unlike.svg", height: 20, class: 'active-like'  %>
-          <% end %>
-        <% else %>
-          <%= button_to like_comment_path(comment.id), method: :post, class: 'icon-container comment' do %>
-            <%= image_tag "like.svg", height: 20, class: 'active-like' %>
-            <%= image_tag "hover-like.svg", height: 20, class: 'hover-like' %>
-          <% end %>
-        <% end %>
-        <%= link_to post_comment_path(@post, comment), class: 'icon-container comment' do %>
-          <%= image_tag "comment.svg", height: 20 %>
-        <% end %>
-        <% if can? :destroy, comment %>
-          <%= button_to post_comment_path(@post, comment), method: :delete, class: 'icon-container comment'  do %>
-            <%= image_tag "delete.svg", height: 20 %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+    <%= render 'comments/card', posts: @posts, comment: comment, no_reply: false %>
   <% end %>
 </div>

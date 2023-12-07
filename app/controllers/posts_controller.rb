@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.where('public = ? OR user_id = ? OR ?', true, current_user.id,
-                        current_user.role == 'admin').limit(100)
+                        current_user.role == 'admin').order(created_at: :desc).limit(100)
   end
 
   def new
