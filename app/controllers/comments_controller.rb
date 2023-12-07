@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   load_and_authorize_resource
   rescue_from CanCan::AccessDenied do |_exception|
     redirect_to root_path, notice: 'Access denied'
