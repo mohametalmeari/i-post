@@ -1,0 +1,32 @@
+    
+<div class="comment-card">
+  <div class="comment-text">
+    <b style="color: #219ebc"><%= truncate(comment.user.username, length: 10, omission: '...')%>;</b>
+    <em>❝ <%= comment.content %> ❞</em>
+  </div>
+  <div class="writer-name">
+    <%= comment.count_likes %> | <%= comment.count_replies %>
+  </div>
+  <div class="likes-container">
+    <% if CommentLike.find_by(comment: comment, user: current_user) %>
+      <%= button_to unlike_comment_path(comment.id), method: :delete, class: 'icon-container comment' do %>
+        <%= image_tag "unlike.svg", height: 20, class: 'active-like'  %>
+      <% end %>
+    <% else %>
+      <%= button_to like_comment_path(comment.id), method: :post, class: 'icon-container comment' do %>
+        <%= image_tag "like.svg", height: 20, class: 'active-like' %>
+        <%= image_tag "hover-like.svg", height: 20, class: 'hover-like' %>
+      <% end %>
+    <% end %>
+    <% unless no_reply %>
+      <%= link_to post_comment_path(@post, comment), class: 'icon-container comment' do %>
+        <%= image_tag "comment.svg", height: 20 %>
+      <% end %>
+    <% end %>
+    <% if can? :destroy, comment %>
+      <%= button_to post_comment_path(@post, comment), method: :delete, class: 'icon-container comment'  do %>
+        <%= image_tag "delete.svg", height: 20 %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
