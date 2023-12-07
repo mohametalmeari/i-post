@@ -23,7 +23,7 @@
       Written by <%= @post.user.name %>
     </em>
     <section class="post-footer">
-      <% if current_user.id == @post.user.id %>
+      <% if user_signed_in? && current_user.id == @post.user.id %>
         <span class="mine-tag tag">
           #mine
         </span>
@@ -36,24 +36,29 @@
     </section>
   </div >
   <div class="likes-container">
-    <% if PostLike.find_by(post: @post, user: current_user) %>
-      <%= button_to unlike_path(@post.id), method: :delete, class: 'icon-container' do %>
-        <%= image_tag "unlike.svg", height: 30, class: 'active-like'  %>
-      <% end %>
-    <% else %>
-      <%= button_to like_path(@post.id), method: :post, class: 'icon-container' do %>
-        <%= image_tag "like.svg", height: 30, class: 'active-like' %>
-        <%= image_tag "hover-like.svg", height: 30, class: 'hover-like' %>
+    <% if user_signed_in? %>
+      <% if PostLike.find_by(post: @post, user: current_user) %>
+        <%= button_to unlike_path(@post.id), method: :delete, class: 'icon-container' do %>
+          <%= image_tag "unlike.svg", height: 30, class: 'active-like'  %>
+        <% end %>
+      <% else %>
+        <%= button_to like_path(@post.id), method: :post, class: 'icon-container' do %>
+          <%= image_tag "like.svg", height: 30, class: 'active-like' %>
+          <%= image_tag "hover-like.svg", height: 30, class: 'hover-like' %>
+        <% end %>
       <% end %>
     <% end %>
     <%= @post.count_likes %> |
     <%= @post.count_comments %>
   </div>
+  <% if user_signed_in? %>
+    
   <%= form_with model: @comment, url: comment_path, html: { class: 'post-form' }  do |f| %>
     <%= f.hidden_field :post_id, value: @post.id %>
     <% f.label :content %>
     <%= f.text_area :content, placeholder: 'Write a comment ...', class: 'text-area comment' %>
     <%= f.submit "Comment", class: 'submit' %>
+  <% end %>
   <% end %>
   <% @comments.each do |comment|%>
     <%= render 'comments/card', posts: @posts, comment: comment, no_reply: false %>

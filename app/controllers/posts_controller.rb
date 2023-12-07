@@ -1,12 +1,17 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   load_and_authorize_resource
   rescue_from CanCan::AccessDenied do |_exception|
     redirect_to root_path, notice: 'Access denied'
   end
 
   def index
-    @posts = Post.where('public = ? OR user_id = ? OR ?', true, current_user.id,
-                        current_user.role == 'admin').order(created_at: :desc).limit(100)
+    @posts = if user_signed_in?
+               Post.where('public = ? OR user_id = ? OR ?', true, current_user.id,
+                          current_user.role == 'admin').order(created_at: :desc).limit(100)
+             else
+               Post.where('public = true').order(created_at: :desc).limit(100)
+             end
   end
 
   def new
