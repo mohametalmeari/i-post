@@ -146,6 +146,7 @@ main {
   border-radius: 8px;
   text-shadow: none;
   box-shadow: none;
+  width: fit-content;
 }
 
 .private-tag {
@@ -390,6 +391,13 @@ main h2 {
   padding-bottom: 5px;
 }
 
+.back-link.del-link {
+  color: #ef233c;
+}
+
+.back-link.del-link::after {
+  background-color: #ef233c;
+}
 .back-link::after {
   content: "";
   position: absolute;
@@ -402,5 +410,10 @@ main h2 {
 }
 
 .back-link:hover::after {
-  width: 100%;
+  width: 100%;  
+}
+
+.links-container{
+  display: flex;
+  gap: 12px;
 }
