@@ -22,6 +22,7 @@ class Ability
 
   def comment_ablities(user)
     can :manage, Comment, post: { public: true }
+    can :manage, Comment, post: { user_id: user.id }
     cannot :destroy, Comment do |comment|
       comment.user_id != user.id
     end
