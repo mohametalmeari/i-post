@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc).limit(100)
+    @posts = Post.where('public = ? OR user_id = ? OR ?', true, current_user.id,
+                        current_user.role == 'admin').limit(100)
   end
 
   def new
@@ -28,6 +29,17 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     redirect_to posts_path, notice: 'Post deleted.'
+  end
+
+  def update
+    post = Post.find(params[:id])
+    post.public = if post.public
+                    false
+                  else
+                    true
+                  end
+    flash[:notice] = (comment.errors.full_messages.join(', ') unless post.save)
+    redirect_to request.referrer
   end
 
   def show
