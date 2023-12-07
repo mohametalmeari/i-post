@@ -314,7 +314,8 @@ main h2 {
   gap: 16px;
 }
 
-.comment-card, .reply-card {
+.comment-card,
+.reply-card {
   border-radius: 0 16px 16px;
   padding: 16px;
   border: solid 2px #8ecae6;
