@@ -398,6 +398,7 @@ main h2 {
 .back-link.del-link::after {
   background-color: #ef233c;
 }
+
 .back-link::after {
   content: "";
   position: absolute;
@@ -410,10 +411,10 @@ main h2 {
 }
 
 .back-link:hover::after {
-  width: 100%;  
+  width: 100%;
 }
 
-.links-container{
+.links-container {
   display: flex;
   gap: 12px;
 }
