@@ -423,3 +423,40 @@ main h2 {
   display: flex;
   gap: 12px;
 }
+
+.notice {
+  position: fixed;
+  bottom: 0;
+  background-color: #ef233caa;
+  border-top: solid 4px #ef233c;
+  backdrop-filter: blur(5px);
+  color: white;
+  padding: 24px 16px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.fadeout {
+  animation: fadeOut 1s ease-out 3s forwards;
+}
+
+li {
+  list-style-type: upper-roman;
+  margin: 16px;
+}
+
+.field_with_errors > .field-label {
+  background-color: #ef233c;
+}
+
+.field_with_errors {
+  display: contents;
+}
