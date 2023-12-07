@@ -13,14 +13,14 @@
   <%= "|" if can? :destroy, @post %>
   <%= button_to "Delete", post_path(@post), method: :delete, class: 'back-link link del-link' if can? :destroy, @post %>
 </div>
-<h2><%= @post.title %></h2>
+<h2  style="<%= "text-align: right;" if @post.title[0].match?(/\p{Arabic}/) %>"><%= @post.title %></h2>
 <div class="post-container">
   <div class="post-text">
-    <span>
-      <%= @post.content %>
+    <span style="<%= "text-align: right;" if @post.content[0].match?(/\p{Arabic}/) %>">
+      <%= @post.content.gsub(/\n/, '<br>').html_safe %>
     </span>
     <em class="writer-name">
-      Writen by <%= @post.user.name %>
+      Written by <%= @post.user.name %>
     </em>
     <section class="post-footer">
       <% if current_user.id == @post.user.id %>

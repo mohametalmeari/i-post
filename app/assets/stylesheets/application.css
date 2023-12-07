@@ -355,6 +355,7 @@ main h2 {
 .icon-container.comment {
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .icon-container > * {
