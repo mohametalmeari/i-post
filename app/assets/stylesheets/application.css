@@ -464,3 +464,141 @@ li {
 .field_with_errors {
   display: contents;
 }
+
+.desktop-only {
+  display: none;
+}
+
+.mobile-ignored {
+  display: contents;
+}
+
+.medium-screen-ignored {
+  display: contents;
+}
+
+@media only screen and (min-width: 600px) {
+  .desktop-only {
+    display: flex;
+  }
+
+  .mobile-ignored {
+    display: flex;
+  }
+
+  /* Desktop Styling */
+  nav {
+    padding: 18px 60px;
+  }
+
+  .logo-icon {
+    flex: 1;
+  }
+
+  .desktop-nav {
+    flex: 3;
+  }
+
+  main {
+    padding: 24px 60px;
+  }
+
+  footer {
+    padding: 48px 60px;
+  }
+
+  .signin-container {
+    flex-direction: column;
+    width: 360px;
+    align-self: center;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  nav {
+    padding: 18px 100px;
+  }
+
+  .desktop-nav {
+    flex: 2;
+  }
+
+  .medium-screen-ignored {
+    display: flex;
+  }
+
+  .form-fields-block {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .blocks-col > * {
+    flex: 1;
+  }
+
+  main {
+    padding: 24px 100px;
+  }
+
+  footer {
+    padding: 48px 100px;
+  }
+
+  .posts-container {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    gap: 24px 4%;
+  }
+
+  .posts-container > * {
+    display: flex;
+  }
+
+  .post-card {
+    flex: 1;
+  }
+
+  .post-content {
+    flex: 1;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  nav {
+    padding: 18px 120px;
+  }
+
+  .desktop-nav {
+    flex: 2;
+  }
+
+  main {
+    padding: 24px 120px;
+  }
+
+  footer {
+    padding: 48px 120px;
+  }
+
+  .posts-container {
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    gap: 24px 2%;
+  }
+
+  .posts-container > * {
+    display: flex;
+  }
+
+  .post-card {
+    flex: 1;
+  }
+
+  .post-content {
+    flex: 1;
+  }
+
+  .blocks-col {
+    gap: 24px;
+  }
+}
