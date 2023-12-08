@@ -30,8 +30,10 @@
         </section>
       </div>
     <% end %>
-    <% if index.even? %>
+    <div class="ad-unit">
+    <% if index % 3 == 0 %>
       <%= render 'layouts/ad-card' %>
     <% end %>
+    </div>
   <% end %>
 </div>
