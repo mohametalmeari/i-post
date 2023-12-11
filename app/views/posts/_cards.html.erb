@@ -1,5 +1,5 @@
 <div class="posts-container">
-  <% @posts.each do |post|%>
+  <% @posts.each_with_index  do |post, index|%>
     <%= link_to post_path(post) do %>
       <div class="post-card">
         <section class="post-header">
@@ -30,5 +30,10 @@
         </section>
       </div>
     <% end %>
+    <div class="ad-unit">
+    <% if index % 3 == 0 %>
+      <%= render 'layouts/ad-card' %>
+    <% end %>
+    </div>
   <% end %>
 </div>

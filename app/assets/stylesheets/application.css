@@ -441,6 +441,10 @@ main h2 {
   z-index: 99;
 }
 
+.ad-unit {
+  background-color: #ffb703;
+}
+
 @keyframes fadeOut {
   100% {
     opacity: 0;
