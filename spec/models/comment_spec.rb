@@ -19,4 +19,8 @@ RSpec.describe Comment, type: :model do
     expect(comment).to_not be_valid
   end
 
+  it 'content, user, post should be present' do
+    comment = Comment.new(content: 'Bla bla bla ...', user:, post:)
+    expect(comment).to be_valid
+  end
 end

@@ -17,4 +17,9 @@ RSpec.describe Post, type: :model do
     post = Post.new(title: 'New Post', content: 'Bla bla bla ...')
     expect(post).to_not be_valid
   end
+
+  it 'title, content, user should be present' do
+    post = Post.new(title: 'New Post', content: 'Bla bla bla ...', user:)
+    expect(post).to be_valid
+  end
 end
