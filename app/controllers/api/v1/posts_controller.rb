@@ -1,4 +1,9 @@
 class Api::V1::PostsController < ApplicationController
+  load_and_authorize_resource
+  rescue_from CanCan::AccessDenied do |_exception|
+    redirect_to root_path, notice: 'Access denied'
+  end
+
   def index
     @posts = Post.where('public = true').order(created_at: :desc).limit(100)
     render json: @posts.map { |p|
