@@ -36,7 +36,7 @@
 
 # 📖 I-POST <a name="about-project"></a>
 
-**i-post** is a dynamic platform where you can share your thoughts, discover diverse content, and participate in engaging discussions. Your posts make you part of a lively community where you can connect with people.
+  **i-post** is a dynamic platform where you can share your thoughts, discover diverse content, and participate in engaging discussions. Your posts make you part of a lively community where you can connect with people. The platform uses an API to fetch public posts, ensuring real-time access to a variety of content at https://i-post-almeari.onrender.com/api/v1/posts.
 
 <img src="./app/assets/images/drawSQL-i-post-export-2023-11-28.png" alt="Schema">
 
@@ -67,6 +67,7 @@
 - *Comment on Posts*
 - *Reply to Comments*
 - *Like Posts and Comments*
+- *User API request to import public posts*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -144,6 +145,7 @@ To run tests, run the following command:
 
 - Add *Report* button for posts and comments
 - Add profile photo
+- Create API documentation
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
