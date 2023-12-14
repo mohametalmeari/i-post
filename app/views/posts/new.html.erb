@@ -1,6 +1,9 @@
 <h2>New Post</h2>
 <%= form_with model: @post, url: posts_path, html: { class: 'post-form' }  do |f| %>
+
+  <%= f.label :title, class: 'hidden'%>
   <%= f.text_field :title, placeholder: "Post Title", class: 'text-field'%>
+  <%= f.label :content, class: 'hidden'%>
   <%= f.text_area :content, placeholder: "Post content ...", class: 'text-area' %>
   <div class="check-box-container">
     <%= f.check_box :public, checked: true %>

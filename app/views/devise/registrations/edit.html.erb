@@ -25,17 +25,17 @@
         <%= f.password_field :password, autocomplete: "new-password", placeholder: "New password", class: 'field-input' %>
       </div>
       <div class="field">
-        <% f.label :password_confirmation, class: 'field-label' %>
         <span class="field-label">
           Confirm
         </span>
+        <%= f.label :password_confirmation, class: 'field-label hidden' %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder: 'Confirm password', class: 'field-input' %>
       </div>
       <div class="field">
-        <% f.label :current_password, class: 'field-label' %>
         <span class="field-label">
           Current
         </span>
+        <%= f.label :current_password, class: 'field-label hidden' %>
         <%= f.password_field :current_password, autocomplete: "current-password", placeholder: 'Enter current password', class: 'field-input' %>
       </div>
     </div>
